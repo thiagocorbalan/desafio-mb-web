@@ -1,6 +1,11 @@
 <script setup>
 import VTextField from "./components/VTextField.vue";
 import VRadio from "./components/VRadio.vue";
+import VButton from "./components/VButton.vue";
+
+function nextStep() {
+	console.log("call method");
+}
 </script>
 
 <template>
@@ -25,7 +30,10 @@ import VRadio from "./components/VRadio.vue";
 			<v-radio name="type" value="PJ" label="Pessoa jurídica" />
 		</div>
 
-		<button class="btn btn__primary">Continuar</button>
+		<div class="actions">
+			<v-button color="ghost" @click="previousStep">Voltar</v-button>
+			<v-button @click="nextStep">Continuar</v-button>
+		</div>
 	</div>
 </template>
 
@@ -48,7 +56,7 @@ import VRadio from "./components/VRadio.vue";
 
 .register-type {
 	display: flex;
-	justify-content: space-between;
+	gap: 1rem;
 	margin-bottom: 1rem;
 }
 
@@ -65,5 +73,11 @@ import VRadio from "./components/VRadio.vue";
 
 .title-step {
 	margin-bottom: 1.5rem;
+}
+
+.actions {
+	display: flex;
+	justify-content: space-between;
+	gap: 1rem;
 }
 </style>
