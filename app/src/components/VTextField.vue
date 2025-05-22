@@ -1,6 +1,6 @@
 <script setup>
 import uuid from "@/utils/generateShortUUID";
-import { computed, defineProps } from "vue";
+import { computed, defineProps, ref } from "vue";
 
 const props = defineProps({
 	label: String,
@@ -11,10 +11,12 @@ const props = defineProps({
 const internalId = computed(() => {
 	return `textField-${uuid()}`;
 });
+
+const hasError = ref(false);
 </script>
 
 <template>
-	<div class="text-field text-field--has-error">
+	<div class="text-field" :class="{ 'text-field--has-error': hasError }">
 		<label :for="internalId" class="text-field__label">
 			{{ props.label }}
 		</label>
@@ -24,7 +26,9 @@ const internalId = computed(() => {
 			class="text-field__input"
 			:placeholder="placeholder"
 		/>
-		<span class="text-field__hint">Alguma coisa</span>
+		<span class="text-field__hint">
+			<slot name="hint" />
+		</span>
 	</div>
 </template>
 
@@ -63,16 +67,16 @@ const internalId = computed(() => {
 		color: color(neutral-900);
 		display: block;
 	}
-}
 
-.text-field--has-error .text-field {
-	&__input,
-	&__hint {
-		color: color(error);
-	}
+	&--has-error .text-field {
+		&__input,
+		&__hint {
+			color: color(error);
+		}
 
-	&__input {
-		border-color: color(error);
+		&__input {
+			border-color: color(error);
+		}
 	}
 }
 </style>

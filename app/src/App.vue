@@ -4,18 +4,25 @@ import VRadio from "./components/VRadio.vue";
 import VButton from "./components/VButton.vue";
 
 function nextStep() {
-	console.log("call method");
+	console.log("next step");
+}
+
+function previousStep() {
+	console.log("previous step");
 }
 </script>
 
 <template>
 	<div class="container">
 		<h1>
-			<img src="@/assets/logo.svg" alt="Mercado Bitcoin" class="logo" />
+			<img
+				src="@/assets/logo.svg"
+				alt="Mercado Bitcoin"
+				title="Mercado Bitcoin"
+				class="logo"
+			/>
 		</h1>
-
-		<div class="step">Etapa <strong>1</strong> de 4</div>
-
+		<div class="step" aria-live="polite">Etapa <strong>1</strong> de 4</div>
 		<h2 class="title-step">Seja bem vindo(a)</h2>
 
 		<v-text-field
@@ -23,7 +30,9 @@ function nextStep() {
 			type="text"
 			placeholder="Digite seu email"
 		/>
-		<v-text-field label="Senha" type="password" />
+		<v-text-field label="Senha" type="password">
+			<template #hint>Algum hint...</template>
+		</v-text-field>
 
 		<div class="register-type">
 			<v-radio name="type" value="PF" label="Pessoa física" />
