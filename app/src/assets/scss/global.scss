@@ -1,0 +1,23 @@
+@use "sass:map";
+
+@import 'reset';
+@import 'colors';
+@import 'buttons';
+@import 'textFields';
+
+body, html {
+	font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+	font-size: 100%;
+	line-height: 1.6rem;
+	color: #333333;
+
+	display: flex;
+	justify-content: center;
+	padding: 1rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	font-weight: 600;
+	color: color(neutral-300);
+}

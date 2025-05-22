@@ -1,0 +1,9 @@
+$colors: (
+	primary: #ef4723,
+	neutral-300: #333333,
+	neutral-white: #ffffff,
+);
+
+@function color($name) {
+	@return map-get($colors, $name);
+}
