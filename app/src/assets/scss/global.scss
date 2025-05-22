@@ -3,13 +3,12 @@
 @import 'reset';
 @import 'colors';
 @import 'buttons';
-@import 'textFields';
 
 body, html {
 	font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 	font-size: 100%;
 	line-height: 1.6rem;
-	color: #333333;
+	color: color(neutral-600);
 
 	display: flex;
 	justify-content: center;
@@ -19,5 +18,15 @@ body, html {
 h2 {
 	font-size: 1.5rem;
 	font-weight: 600;
-	color: color(neutral-300);
+	color: color(neutral-600);
+}
+
+.sr-only {
+	clip: rect(0 0 0 0);
+	clip-path: inset(50%);
+	height: 1px;
+	overflow: hidden;
+	position: absolute;
+	white-space: nowrap;
+	width: 1px;
 }
