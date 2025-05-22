@@ -14,19 +14,26 @@ const internalId = computed(() => {
 </script>
 
 <template>
-	<div class="text-field">
-		<label :for="internalId">{{ props.label }}</label>
+	<div class="text-field text-field--has-error">
+		<label :for="internalId" class="text-field__label">
+			{{ props.label }}
+		</label>
 		<input
 			:id="internalId"
 			:type="type"
 			class="text-field__input"
 			:placeholder="placeholder"
 		/>
+		<span class="text-field__hint">Alguma coisa</span>
 	</div>
 </template>
 
 <style lang="scss" scoped>
 @import "./../assets/scss/global.scss";
+
+.text-field__label {
+	font-size: 0.875rem;
+}
 
 .text-field {
 	display: flex;
@@ -34,7 +41,7 @@ const internalId = computed(() => {
 	gap: 0.25rem;
 	margin-bottom: 1rem;
 
-	.text-field__input {
+	&__input {
 		border-radius: 0.25rem;
 		border: 0.0625rem solid color(neutral-600);
 		font-size: 1rem;
@@ -42,13 +49,30 @@ const internalId = computed(() => {
 		line-height: 1.125rem;
 
 		&::placeholder {
-			color: color(neutral-100);
+			color: color(neutral-400);
 		}
 
 		&:focus {
 			outline: 0.125rem solid color(primary);
 			outline-offset: 0.125rem;
 		}
+	}
+
+	&__hint {
+		font-size: 14px;
+		color: color(neutral-900);
+		display: block;
+	}
+}
+
+.text-field--has-error .text-field {
+	&__input,
+	&__hint {
+		color: color(error);
+	}
+
+	&__input {
+		border-color: color(error);
 	}
 }
 </style>
