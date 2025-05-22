@@ -4,6 +4,5 @@ export default defineConfig({
 	test: {
     include: ['**/*.test.js'],
 		environment: 'node',
-		testTimeout: 10000,
 	},
 })
