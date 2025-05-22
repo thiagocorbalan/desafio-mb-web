@@ -2,6 +2,7 @@
 
 @import 'reset';
 @import 'colors';
+@import 'screens';
 
 body, html {
 	font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
@@ -9,9 +10,20 @@ body, html {
 	line-height: 1.6rem;
 	color: color(neutral-600);
 
+}
+
+body {
 	display: flex;
 	justify-content: center;
 	padding: 1rem;
+	width: 100vw;
+	height: 100dvh;
+	box-sizing: border-box;
+	background: color(neutral-100);
+
+	> div {
+		width: 100%;
+	}
 }
 
 h2 {

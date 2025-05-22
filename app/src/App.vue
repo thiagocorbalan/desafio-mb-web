@@ -40,8 +40,8 @@ function previousStep() {
 		</div>
 
 		<div class="actions">
-			<v-button color="ghost" @click="previousStep">Voltar</v-button>
 			<v-button @click="nextStep">Continuar</v-button>
+			<v-button color="ghost" @click="previousStep">Voltar</v-button>
 		</div>
 	</div>
 </template>
@@ -50,10 +50,13 @@ function previousStep() {
 @import "./assets/scss/global.scss";
 
 .container {
-	border: 1px solid;
+	background: color(neutral-white);
 	border-radius: 0.5rem;
 	padding: 1rem;
 	width: 100%;
+	box-sizing: border-box;
+	box-shadow: 0.125rem 0.125rem 0.625rem color(neutral-300);
+	margin: 0 auto;
 }
 
 .logo {
@@ -65,7 +68,7 @@ function previousStep() {
 
 .register-type {
 	display: flex;
-	gap: 1rem;
+	flex-direction: column;
 	margin-bottom: 1rem;
 }
 
@@ -87,6 +90,24 @@ function previousStep() {
 .actions {
 	display: flex;
 	justify-content: space-between;
+	flex-direction: column;
 	gap: 1rem;
+}
+
+@media screen and (min-width: screen(sm)) {
+	.container {
+		padding: 2rem;
+		margin: 1rem auto;
+		min-width: 22.5rem;
+		max-width: 30rem;
+	}
+
+	.register-type {
+		gap: 1rem;
+		flex-direction: row;
+	}
+	.actions {
+		flex-direction: row-reverse;
+	}
 }
 </style>

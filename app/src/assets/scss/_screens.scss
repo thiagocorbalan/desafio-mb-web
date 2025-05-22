@@ -1,0 +1,9 @@
+$screens: (
+	sm: 46.5rem,
+	md: 64rem,
+	lg: 90rem,
+);
+
+@function screen($size) {
+	@return map-get($screens, $size);
+}

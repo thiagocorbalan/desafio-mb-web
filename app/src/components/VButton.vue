@@ -41,7 +41,7 @@ const cssClassMap = {
 	font-weight: 600;
 	justify-content: center;
 	line-height: 1.125rem;
-	min-width: 10rem;
+	min-width: min-content;
 	padding: 0.5rem;
 	text-align: center;
 	width: 100%;
