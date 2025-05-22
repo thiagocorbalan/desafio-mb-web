@@ -3,10 +3,7 @@ import uuid from "@/utils/generateShortUUID";
 import { computed, defineProps, defineModel } from "vue";
 
 const props = defineProps({
-	name: String,
 	label: String,
-	value: String,
-	checked: Boolean,
 });
 
 const model = defineModel();
@@ -21,10 +18,9 @@ const internalId = computed(() => {
 		<input
 			type="radio"
 			class="sr-only"
-			:name="`radio-${props.name}`"
+			v-bind="$attrs"
 			:id="internalId"
 			v-model="model"
-			:value="value"
 		/>
 		<label class="radio-field__label" :for="internalId">
 			<span class="radio-field__label__wrapper"></span>

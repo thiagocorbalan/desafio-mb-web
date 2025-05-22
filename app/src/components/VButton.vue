@@ -4,7 +4,6 @@ import VSpinner from "./VSpinner.vue";
 
 const props = defineProps({
 	color: String,
-	type: String,
 	loading: Boolean,
 	disabled: Boolean,
 });
@@ -17,12 +16,12 @@ const cssClassMap = {
 
 <template>
 	<button
-		:type="type"
 		class="btn"
 		:class="cssClassMap[props.color || 'primary']"
 		:aria-busy="props.loading || null"
 		:aria-live="props.loading || null"
 		:disabled="props.loading || props.disabled"
+		v-bind="$attrs"
 	>
 		<v-spinner v-if="props.loading" />
 		<slot v-else />
@@ -71,8 +70,7 @@ const cssClassMap = {
 		color: color(primary);
 
 		&:hover {
-			background-color: color(primary-light);
-			border-color: color(primary-light);
+			background-color: color(primary);
 			color: color(neutral-white);
 		}
 		&:focus {

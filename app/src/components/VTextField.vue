@@ -4,9 +4,6 @@ import { computed, defineProps, ref, defineModel } from "vue";
 
 const props = defineProps({
 	label: String,
-	type: String,
-	placeholder: String,
-	readonly: Boolean,
 });
 
 const model = defineModel();
@@ -26,10 +23,8 @@ const hasError = ref(false);
 		<input
 			class="text-field__input"
 			:id="internalId"
-			:type="type"
-			:placeholder="placeholder"
+			v-bind="$attrs"
 			v-model="model"
-			:readonly="readonly"
 		/>
 		<span class="text-field__hint">
 			<slot name="hint" />
