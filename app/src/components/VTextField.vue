@@ -17,7 +17,7 @@ const internalId = computed(() => {
 	<div class="text-field">
 		<label :for="internalId">{{ props.label }}</label>
 		<input
-			id="internalId"
+			:id="internalId"
 			:type="type"
 			class="text-field__input"
 			:placeholder="placeholder"
@@ -31,12 +31,12 @@ const internalId = computed(() => {
 .text-field {
 	display: flex;
 	flex-direction: column;
-	gap: 4px;
-	margin-bottom: 16px;
+	gap: 0.25rem;
+	margin-bottom: 1rem;
 
 	.text-field__input {
 		border-radius: 0.25rem;
-		border: 1px solid color(neutral-600);
+		border: 0.0625rem solid color(neutral-600);
 		font-size: 1rem;
 		padding: 0.5rem;
 		line-height: 1.125rem;
@@ -46,7 +46,8 @@ const internalId = computed(() => {
 		}
 
 		&:focus {
-			outline: 2px solid color(primary);
+			outline: 0.125rem solid color(primary);
+			outline-offset: 0.125rem;
 		}
 	}
 }

@@ -46,7 +46,7 @@ const internalId = computed(() => {
 
 		&__wrapper {
 			border-radius: 100%;
-			border: 1px solid color(primary);
+			border: 0.0625rem solid color(primary);
 			display: flex;
 			align-items: center;
 			justify-content: center;
@@ -71,8 +71,17 @@ const internalId = computed(() => {
 		transform: scale(1);
 	}
 
-	input:focus-visible ~ .radio-field__label .radio-field__label__wrapper {
-		outline: 10px solid rgba(204, 204, 204, 0.3);
+	input:focus-visible {
+		~ .radio-field__label .radio-field__label__wrapper {
+			outline: 0.625rem solid color(neutral-300);
+		}
+
+		&:not(:checked)
+			~ .radio-field__label
+			.radio-field__label__wrapper::after {
+			background: color(primary-light);
+			transform: scale(0.75);
+		}
 	}
 }
 </style>
