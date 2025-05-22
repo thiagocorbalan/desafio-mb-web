@@ -1,15 +1,41 @@
 <script setup>
-import { ref } from "vue";
 import VButton from "@/components/VButton.vue";
 import FirstStep from "@/components/registration/FirstStep.vue";
+import PassStep from "@/components/registration/PassStep.vue";
+import ReviewStep from "@/components/registration/ReviewStep.vue";
+import UserDataStep from "@/components/registration/UserDataStep.vue";
+import { computed, ref } from "vue";
 
-const currentStep = ref(1);
+const step = ref(0);
 
-// const steps = [];
+const steps = [FirstStep, UserDataStep, PassStep, ReviewStep];
 
-function previousStep() {}
+const currentStep = computed(() => step.value + 1);
+const isLastStep = computed(() => step.value === steps.length - 1);
+const textButton = computed(() =>
+	isLastStep.value ? "Cadastrar" : "Continuar"
+);
 
-function nextStep() {}
+function previousStep() {
+	step.value--;
+}
+
+function nextStep() {
+	step.value++;
+}
+
+function submitForm() {
+	// submit form...
+}
+
+function handleClick() {
+	if (isLastStep.value) {
+		submitForm();
+		return;
+	}
+
+	nextStep();
+}
 </script>
 
 <template>
@@ -26,12 +52,15 @@ function nextStep() {}
 			Etapa <strong>{{ currentStep }}</strong> de 4
 		</div>
 
-		<FirstStep />
+		<component :is="steps[step]" />
+
 		<div class="actions">
-			<v-button @click="nextStep">Continuar</v-button>
-			<v-button v-if="currentStep > 1" color="ghost" @click="previousStep"
-				>Voltar</v-button
-			>
+			<v-button @click="handleClick">
+				{{ textButton }}
+			</v-button>
+			<v-button v-if="step > 0" color="ghost" @click="previousStep">
+				Voltar
+			</v-button>
 		</div>
 	</div>
 </template>
@@ -69,6 +98,17 @@ function nextStep() {}
 	strong {
 		color: color(primary);
 		font-weight: 600;
+	}
+}
+
+.actions {
+	display: flex;
+	justify-content: space-between;
+	flex-direction: column;
+	gap: 1rem;
+
+	@media screen and (min-width: screen(sm)) {
+		flex-direction: row-reverse;
 	}
 }
 </style>

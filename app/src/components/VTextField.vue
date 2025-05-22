@@ -6,6 +6,7 @@ const props = defineProps({
 	label: String,
 	type: String,
 	placeholder: String,
+	readonly: Boolean,
 });
 
 const model = defineModel();
@@ -28,6 +29,7 @@ const hasError = ref(false);
 			:type="type"
 			:placeholder="placeholder"
 			v-model="model"
+			:readonly="readonly"
 		/>
 		<span class="text-field__hint">
 			<slot name="hint" />

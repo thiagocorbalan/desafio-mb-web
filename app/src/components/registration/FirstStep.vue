@@ -1,17 +1,10 @@
 <script setup>
-import VTextField from "../VTextField.vue";
+import { useStore } from "vuex";
 import VRadio from "../VRadio.vue";
-import { ref } from "vue";
+import VTextField from "../VTextField.vue";
 
-const dataForm = ref({
-	email: "",
-	type: "PF",
-	name: "",
-	document: "",
-	date: "",
-	phone: "",
-	password: "",
-});
+const store = useStore();
+const dataForm = store.state.registrationForm;
 </script>
 
 <template>
@@ -48,22 +41,10 @@ const dataForm = ref({
 	display: flex;
 	flex-direction: column;
 	margin-bottom: 1rem;
-}
 
-.actions {
-	display: flex;
-	justify-content: space-between;
-	flex-direction: column;
-	gap: 1rem;
-}
-
-@media screen and (min-width: screen(sm)) {
-	.register-type {
+	@media screen and (min-width: screen(sm)) {
 		gap: 1rem;
 		flex-direction: row;
-	}
-	.actions {
-		flex-direction: row-reverse;
 	}
 }
 </style>
