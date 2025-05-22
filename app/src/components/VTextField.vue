@@ -1,12 +1,14 @@
 <script setup>
 import uuid from "@/utils/generateShortUUID";
-import { computed, defineProps, ref } from "vue";
+import { computed, defineProps, ref, defineModel } from "vue";
 
 const props = defineProps({
 	label: String,
 	type: String,
 	placeholder: String,
 });
+
+const model = defineModel();
 
 const internalId = computed(() => {
 	return `textField-${uuid()}`;
@@ -21,10 +23,11 @@ const hasError = ref(false);
 			{{ props.label }}
 		</label>
 		<input
+			class="text-field__input"
 			:id="internalId"
 			:type="type"
-			class="text-field__input"
 			:placeholder="placeholder"
+			v-model="model"
 		/>
 		<span class="text-field__hint">
 			<slot name="hint" />

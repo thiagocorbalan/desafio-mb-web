@@ -1,6 +1,6 @@
 <script setup>
-import { computed, defineProps, ref } from "vue";
 import uuid from "@/utils/generateShortUUID";
+import { computed, defineProps, defineModel } from "vue";
 
 const props = defineProps({
 	name: String,
@@ -9,7 +9,7 @@ const props = defineProps({
 	checked: Boolean,
 });
 
-const internalChecked = ref(props.checked);
+const model = defineModel();
 
 const internalId = computed(() => {
 	return `radio-${uuid()}`;
@@ -20,11 +20,11 @@ const internalId = computed(() => {
 	<div class="radio-field">
 		<input
 			type="radio"
-			:name="props.name"
-			:id="internalId"
-			:value="props.value"
-			:checked="internalChecked"
 			class="sr-only"
+			:name="`radio-${props.name}`"
+			:id="internalId"
+			v-model="model"
+			:value="value"
 		/>
 		<label class="radio-field__label" :for="internalId">
 			<span class="radio-field__label__wrapper"></span>
