@@ -1,9 +1,9 @@
 <script setup>
+import { email, required } from "@/utils/validators";
+import { watch } from "vue";
 import { useStore } from "vuex";
 import VRadio from "../VRadio.vue";
 import VTextField from "../VTextField.vue";
-import { required, email } from "@/utils/validators";
-import { watch } from "vue";
 
 const store = useStore();
 const dataForm = store.state.registrationForm;
@@ -16,7 +16,6 @@ watch(
 
 <template>
 	<h2>Seja bem vindo(a)</h2>
-
 	<v-text-field
 		label="Endereço de e-mail"
 		type="email"
@@ -24,6 +23,7 @@ watch(
 		v-model="dataForm.email"
 		required
 		:rules="[required, email]"
+		v-autofocus
 	/>
 
 	<div class="register-type">

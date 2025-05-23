@@ -55,8 +55,7 @@ const cssClassMap = {
 	width: 100%;
 
 	&:focus {
-		outline: 0.125rem solid color(neutral-black);
-		outline-offset: 0.125rem;
+		outline: 0.1875rem solid color(neutral-black);
 	}
 
 	&--primary:not([disabled]) {
@@ -66,10 +65,6 @@ const cssClassMap = {
 
 		&:hover {
 			background-color: color(primary-dark);
-		}
-
-		&:focus {
-			outline-color: color(primary);
 		}
 	}
 
@@ -81,9 +76,6 @@ const cssClassMap = {
 		&:hover {
 			background-color: color(primary);
 			color: color(neutral-white);
-		}
-		&:focus {
-			outline-color: color(primary);
 		}
 	}
 

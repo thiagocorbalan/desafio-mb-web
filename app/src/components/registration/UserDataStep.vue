@@ -29,6 +29,7 @@ const labelDate = computed(() =>
 			required
 			type="text"
 			v-model="dataForm.name"
+			v-autofocus
 		/>
 		<v-text-field
 			:mask="cpfMask"

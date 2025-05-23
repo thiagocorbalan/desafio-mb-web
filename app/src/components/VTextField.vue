@@ -54,7 +54,7 @@ const { el } = useIMask(props.mask);
 			class="text-field__input"
 			:id="internalId"
 			v-bind="$attrs"
-			v-model="model"
+			v-model.lazy="model"
 			:mask="mask"
 			ref="el"
 		/>
@@ -88,8 +88,7 @@ const { el } = useIMask(props.mask);
 		}
 
 		&:focus {
-			outline: 0.125rem solid color(primary);
-			outline-offset: 0.125rem;
+			outline: 0.1875rem solid color(neutral-black);
 		}
 	}
 
