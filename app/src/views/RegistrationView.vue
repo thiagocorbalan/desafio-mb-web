@@ -5,9 +5,14 @@ import PassStep from "@/components/registration/PassStep.vue";
 import ReviewStep from "@/components/registration/ReviewStep.vue";
 import UserDataStep from "@/components/registration/UserDataStep.vue";
 import { computed, ref } from "vue";
+import { useRegistrationApi } from "@/composable/useRegistrationApi";
+import { useStore } from "vuex";
+
+const { postData, loading, error } = useRegistrationApi();
+
+const store = useStore();
 
 const step = ref(0);
-
 const steps = [FirstStep, UserDataStep, PassStep, ReviewStep];
 
 const currentStep = computed(() => step.value + 1);
@@ -26,7 +31,7 @@ function nextStep() {
 
 function submitForm() {
 	if (isLastStep.value) {
-		console.log("submit form");
+		postData("/registration", store.state.registrationForm);
 	} else {
 		nextStep();
 	}
@@ -51,7 +56,7 @@ function submitForm() {
 			<component :is="steps[step]" />
 
 			<div class="actions">
-				<v-button>{{ textButton }}</v-button>
+				<v-button :loading="loading">{{ textButton }}</v-button>
 				<v-button
 					v-if="step > 0"
 					type="button"
@@ -61,6 +66,7 @@ function submitForm() {
 					Voltar
 				</v-button>
 			</div>
+			{{ error }}
 		</form>
 	</div>
 </template>
