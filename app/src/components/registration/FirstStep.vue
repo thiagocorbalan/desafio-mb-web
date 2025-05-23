@@ -13,8 +13,9 @@ const dataForm = store.state.registrationForm;
 	<v-text-field
 		label="Endereço de e-mail"
 		type="email"
-		placeholder="Digite seu email"
+		placeholder="Digite seu email..."
 		v-model="dataForm.email"
+		required
 	/>
 
 	<div class="register-type">

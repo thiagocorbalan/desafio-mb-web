@@ -14,12 +14,25 @@ const title = computed(() =>
 	<h2>{{ title }}</h2>
 
 	<template v-if="dataForm.type === 'PF'">
-		<v-text-field type="text" label="Nome" v-model="dataForm.name" />
-		<v-text-field type="tel" label="CPF" v-model="dataForm.document" />
+		<v-text-field
+			type="text"
+			label="Nome"
+			v-model="dataForm.name"
+			placeholder="Digite seu nome..."
+			required
+		/>
+		<v-text-field
+			type="tel"
+			label="CPF"
+			placeholder="xxx.xxx.xxx-xx"
+			v-model="dataForm.document"
+			required
+		/>
 		<v-text-field
 			type="date"
 			label="Data de nascimento"
 			v-model="dataForm.date"
+			required
 		/>
 	</template>
 
@@ -28,14 +41,30 @@ const title = computed(() =>
 			type="text"
 			label="Razão Social"
 			v-model="dataForm.name"
+			placeholder="Digite a razão social..."
+			autofocus
+			required
 		/>
-		<v-text-field type="tel" label="CNPJ" v-model="dataForm.document" />
+		<v-text-field
+			type="tel"
+			label="CNPJ"
+			placeholder="xx.xxx.xxx/xxxx-xx"
+			v-model="dataForm.document"
+			required
+		/>
 		<v-text-field
 			type="date"
 			label="Data de abertura"
 			v-model="dataForm.date"
+			required
 		/>
 	</template>
 
-	<v-text-field type="tel" label="Telefone" v-model="dataForm.phone" />
+	<v-text-field
+		type="tel"
+		label="Telefone"
+		placeholder="(xx) xxxxxx-xxxx"
+		v-model="dataForm.phone"
+		required
+	/>
 </template>

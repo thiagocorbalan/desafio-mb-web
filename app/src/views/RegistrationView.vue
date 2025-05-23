@@ -25,16 +25,11 @@ function nextStep() {
 }
 
 function submitForm() {
-	// submit form...
-}
-
-function handleClick() {
 	if (isLastStep.value) {
-		submitForm();
-		return;
+		console.log("submit form");
+	} else {
+		nextStep();
 	}
-
-	nextStep();
 }
 </script>
 
@@ -52,16 +47,21 @@ function handleClick() {
 			Etapa <strong>{{ currentStep }}</strong> de 4
 		</div>
 
-		<component :is="steps[step]" />
+		<form @submit.prevent="submitForm">
+			<component :is="steps[step]" />
 
-		<div class="actions">
-			<v-button @click="handleClick">
-				{{ textButton }}
-			</v-button>
-			<v-button v-if="step > 0" color="ghost" @click="previousStep">
-				Voltar
-			</v-button>
-		</div>
+			<div class="actions">
+				<v-button>{{ textButton }}</v-button>
+				<v-button
+					v-if="step > 0"
+					type="button"
+					color="ghost"
+					@click="previousStep"
+				>
+					Voltar
+				</v-button>
+			</div>
+		</form>
 	</div>
 </template>
 
@@ -106,6 +106,7 @@ function handleClick() {
 	justify-content: space-between;
 	flex-direction: column;
 	gap: 1rem;
+	margin-top: 2rem;
 
 	@media screen and (min-width: screen(sm)) {
 		flex-direction: row-reverse;
