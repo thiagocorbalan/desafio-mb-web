@@ -1,7 +1,7 @@
 import { ref } from "vue";
 import { post } from "@/utils/httpRequest";
 
-export function useRegistrationApi() {
+export const useRegistrationApi = () => {
 	const loading = ref(false);
 	const error = ref(null);
 
@@ -22,4 +22,4 @@ export function useRegistrationApi() {
 		error,
 		postData,
 	};
-}
+};

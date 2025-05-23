@@ -2,11 +2,9 @@ import { isValidCNPJ, isValidCPF, isValidEmail } from "@brazilian-utils/brazilia
 import dayjs from 'dayjs';
 import existEmptyFields from './../utils/checkEmptyFields/index.js';
 
-function sendError(message) {
-	return { error: true, message };
-}
+const sendError = (message) ({ error: true, message });
 
-function register(body) {
+const register = (body)=> {
 	if (existEmptyFields(body)) return sendError('body contain empty fields');
 	if (!/PJ|PF/.test(body.type)) return sendError(`Type is not valid: ${body.type}`);
 	if (body.type === 'PJ' && !isValidCNPJ(body.document)) return sendError('CNPJ is not valid');

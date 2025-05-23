@@ -26,7 +26,7 @@ const touched = ref(false);
 const internalId = computed(() => `textField-${uuid()}`);
 const hasError = computed(() => errorMessage.value && touched.value);
 
-function validate() {
+const validate = () => {
 	const isValid = props.rules.reduce((result, rule) => {
 		if (typeof result === "string") return result;
 		return rule(model.value);
@@ -40,7 +40,7 @@ function validate() {
 
 	el.value.setCustomValidity("");
 	errorMessage.value = null;
-}
+};
 
 watch(model, validate);
 

@@ -21,21 +21,17 @@ const textButton = computed(() =>
 	isLastStep.value ? "Cadastrar" : "Continuar"
 );
 
-function previousStep() {
-	step.value--;
-}
+const previousStep = () => step.value--;
 
-function nextStep() {
-	step.value++;
-}
+const nextStep = () => step.value++;
 
-function submitForm() {
+const submitForm = () => {
 	if (isLastStep.value) {
 		postData("/registration", store.state.registrationForm);
 	} else {
 		nextStep();
 	}
-}
+};
 </script>
 
 <template>

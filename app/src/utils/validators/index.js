@@ -6,35 +6,19 @@ import {
 } from "@brazilian-utils/brazilian-utils";
 import dayjs from "dayjs";
 
-export function required(value) {
-	return !!value || "Campo obrigatório";
-}
+export const required = (value) => !!value || "Campo obrigatório";
 
-export function email(value) {
-	return isValidEmail(value) || "Email inválido";
-}
+export const email = (value) => isValidEmail(value) || "Email inválido";
 
-export function cpf(value) {
-	return isValidCPF(value) || "CPF inválido";
-}
+export const cpf = (value) => isValidCPF(value) || "CPF inválido";
 
-export function cnpj(value) {
-	return isValidCNPJ(value) || "CNPJ inválido";
-}
+export const cnpj = (value) => isValidCNPJ(value) || "CNPJ inválido";
 
-export function phone(value) {
-	return isValidPhone(value) || "Telfone inválido";
-}
+export const phone = (value) => isValidPhone(value) || "Telfone inválido";
 
-export function date(value) {
-	return (
-		(dayjs(value, "YYYY-DD-MM").isValid() &&
-			dayjs(value).isBefore(dayjs())) ||
-		"Data inválida"
-	);
-}
+export const date = (value) =>
+	(dayjs(value, "YYYY-DD-MM").isValid() && dayjs(value).isBefore(dayjs())) ||
+	"Data inválida";
 
-export function minLength(length) {
-	return (value) =>
-		value.length >= length || `Deve conter no mínimo ${length} digitos.`;
-}
+export const minLength = (length) => (value) =>
+	value.length >= length || `Deve conter no mínimo ${length} digitos.`;
