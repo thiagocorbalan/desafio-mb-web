@@ -10,6 +10,7 @@ $colors: (
 	neutral-900: #171717,
 	neutral-black: #000,
 	error: #c00,
+	error-light: #ffecec,
 );
 
 @function color($name) {

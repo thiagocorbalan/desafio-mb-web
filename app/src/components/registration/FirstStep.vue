@@ -5,6 +5,10 @@ import VTextField from "../VTextField.vue";
 
 const store = useStore();
 const dataForm = store.state.registrationForm;
+
+function required(value) {
+	return !!value || "Campo obrigatório";
+}
 </script>
 
 <template>
@@ -16,6 +20,7 @@ const dataForm = store.state.registrationForm;
 		placeholder="Digite seu email..."
 		v-model="dataForm.email"
 		required
+		:rules="[required]"
 	/>
 
 	<div class="register-type">

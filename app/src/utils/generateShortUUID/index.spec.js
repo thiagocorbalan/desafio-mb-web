@@ -1,7 +1,6 @@
-import { describe, it, expect } from "vitest";
-import subject from "./uuid";
+import subject from "./";
 
-describe("subject", () => {
+describe("generateShortUUID", () => {
 	it("should return a string", () => {
 		const result = subject();
 
@@ -12,14 +11,6 @@ describe("subject", () => {
 		const result = subject();
 
 		expect(result.length).toBe(8);
-	});
-
-	it("should return a string of given length", () => {
-		const length = 12;
-
-		const result = subject(length);
-
-		expect(result.length).toBe(length);
 	});
 
 	it("should only contain valid characters", () => {

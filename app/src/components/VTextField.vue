@@ -1,11 +1,15 @@
 <script setup>
 import uuid from "@/utils/generateShortUUID";
-import { computed, defineProps, ref, defineModel } from "vue";
+import { computed, defineProps, ref, defineModel, watch } from "vue";
 
 const props = defineProps({
 	label: {
 		type: String,
 		default: "Label",
+	},
+	rules: {
+		type: Array,
+		default: () => [],
 	},
 });
 
@@ -15,11 +19,28 @@ const internalId = computed(() => {
 	return `textField-${uuid()}`;
 });
 
-const hasError = ref(false);
+const errorMessage = ref(null);
+
+function validate() {
+	console.log("asdasd", props.label);
+	const isValid = props.rules.reduce((result, rule) => {
+		if (typeof result === "string") return result;
+		return rule(model.value);
+	}, true);
+
+	if (typeof isValid === "string") {
+		errorMessage.value = isValid;
+		return;
+	}
+
+	errorMessage.value = null;
+}
+
+watch(model, validate);
 </script>
 
 <template>
-	<div class="text-field" :class="{ 'text-field--has-error': hasError }">
+	<div class="text-field" :class="{ 'text-field--has-error': errorMessage }">
 		<label :for="internalId" class="text-field__label">
 			{{ props.label }}
 		</label>
@@ -29,9 +50,7 @@ const hasError = ref(false);
 			v-bind="$attrs"
 			v-model="model"
 		/>
-		<span class="text-field__hint">
-			<slot name="hint" />
-		</span>
+		<span class="text-field__error-message">{{ errorMessage }}</span>
 	</div>
 </template>
 
@@ -40,6 +59,8 @@ const hasError = ref(false);
 
 .text-field__label {
 	font-size: 0.875rem;
+	font-weight: 600;
+	color: color(neutral-600);
 }
 
 .text-field {
@@ -49,7 +70,7 @@ const hasError = ref(false);
 
 	&__input {
 		border-radius: 0.25rem;
-		border: 0.0625rem solid color(neutral-600);
+		border: 0.0625rem solid color(neutral-300);
 		font-size: 1rem;
 		padding: 0.5rem;
 		line-height: 1.125rem;
@@ -64,20 +85,20 @@ const hasError = ref(false);
 		}
 	}
 
-	&__hint {
-		font-size: 14px;
-		color: color(neutral-900);
-		display: block;
-	}
-
 	&--has-error .text-field {
+		&__error-message {
+			font-size: 0.75rem;
+			display: block;
+		}
+
 		&__input,
-		&__hint {
+		&__error-message {
 			color: color(error);
 		}
 
 		&__input {
 			border-color: color(error);
+			background-color: color(error-light);
 		}
 	}
 }
