@@ -3,9 +3,15 @@ import { useStore } from "vuex";
 import VRadio from "../VRadio.vue";
 import VTextField from "../VTextField.vue";
 import { required, email } from "@/utils/validators";
+import { watch } from "vue";
 
 const store = useStore();
 const dataForm = store.state.registrationForm;
+
+watch(
+	() => store.getters.registrationType,
+	() => store.commit("resetRegistrationUserData")
+);
 </script>
 
 <template>

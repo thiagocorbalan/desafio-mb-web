@@ -12,8 +12,17 @@ export default createStore({
 			password: "",
 		},
 	},
-	getters: {},
-	mutations: {},
+	getters: {
+		registrationType(state) {
+			return state.registrationForm.type;
+		},
+	},
+	mutations: {
+		resetRegistrationUserData(state) {
+			state.registrationForm.name = "";
+			state.registrationForm.document = "";
+		},
+	},
 	actions: {},
 	modules: {},
 });
