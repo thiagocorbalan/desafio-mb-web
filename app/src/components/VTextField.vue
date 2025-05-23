@@ -1,6 +1,6 @@
 <script setup>
 import uuid from "@/utils/generateShortUUID";
-import { computed, defineProps, ref, defineModel, watch } from "vue";
+import { computed, defineProps, ref, defineModel, watch, onMounted } from "vue";
 import { useIMask } from "vue-imask";
 
 const props = defineProps({
@@ -20,11 +20,11 @@ const props = defineProps({
 
 const model = defineModel();
 
-const internalId = computed(() => {
-	return `textField-${uuid()}`;
-});
-
 const errorMessage = ref(null);
+const touched = ref(false);
+
+const internalId = computed(() => `textField-${uuid()}`);
+const hasError = computed(() => errorMessage.value && touched.value);
 
 function validate() {
 	const isValid = props.rules.reduce((result, rule) => {
@@ -34,19 +34,25 @@ function validate() {
 
 	if (typeof isValid === "string") {
 		errorMessage.value = isValid;
+		el.value.setCustomValidity(isValid);
 		return;
 	}
 
+	el.value.setCustomValidity("");
 	errorMessage.value = null;
 }
 
 watch(model, validate);
 
+onMounted(() => {
+	validate();
+});
+
 const { el } = useIMask(props.mask);
 </script>
 
 <template>
-	<div class="text-field" :class="{ 'text-field--has-error': errorMessage }">
+	<div class="text-field" :class="{ 'text-field--has-error': hasError }">
 		<label :for="internalId" class="text-field__label">
 			{{ props.label }}
 		</label>
@@ -57,8 +63,11 @@ const { el } = useIMask(props.mask);
 			v-model.lazy="model"
 			:mask="mask"
 			ref="el"
+			@blur="() => (touched = true)"
 		/>
-		<span class="text-field__error-message">{{ errorMessage }}</span>
+		<span v-show="hasError" class="text-field__error-message">{{
+			errorMessage
+		}}</span>
 	</div>
 </template>
 
