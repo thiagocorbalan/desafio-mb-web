@@ -1,10 +1,13 @@
+import cors from 'cors';
 import express from 'express';
 import registrationService from './services/registration.js';
+
 
 const app = express();
 const port = 3000;
 
 app.use(express.json());
+app.use(cors());
 
 app.post('/registration', (req, res) => {
 	try {
