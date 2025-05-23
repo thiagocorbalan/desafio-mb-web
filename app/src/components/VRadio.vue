@@ -3,7 +3,10 @@ import uuid from "@/utils/generateShortUUID";
 import { computed, defineProps, defineModel } from "vue";
 
 const props = defineProps({
-	label: String,
+	label: {
+		type: String,
+		default: "Label",
+	},
 });
 
 const model = defineModel();

@@ -3,9 +3,18 @@ import { defineProps } from "vue";
 import VSpinner from "./VSpinner.vue";
 
 const props = defineProps({
-	color: String,
-	loading: Boolean,
-	disabled: Boolean,
+	color: {
+		type: String,
+		default: "primary",
+	},
+	loading: {
+		type: Boolean,
+		default: false,
+	},
+	disabled: {
+		type: Boolean,
+		default: false,
+	},
 });
 
 const cssClassMap = {
