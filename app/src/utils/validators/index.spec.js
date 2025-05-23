@@ -81,10 +81,10 @@ describe("validators utils", () => {
 	describe("minLength", () => {
 		it("should return message when value is invalid", () => {
 			const resultA = minLength(8);
-			expect(resultA("1234567")).toBe("Quantidade mínima: 8");
+			expect(resultA("1234567")).toBe("Deve conter no mínimo 8 digitos.");
 
 			const resultB = minLength(4);
-			expect(resultB("123")).toBe("Quantidade mínima: 4");
+			expect(resultB("123")).toBe("Deve conter no mínimo 4 digitos.");
 		});
 
 		it("should return true when value is valid", () => {

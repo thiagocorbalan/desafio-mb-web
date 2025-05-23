@@ -1,6 +1,7 @@
 <script setup>
 import uuid from "@/utils/generateShortUUID";
 import { computed, defineProps, ref, defineModel, watch } from "vue";
+import { useIMask } from "vue-imask";
 
 const props = defineProps({
 	label: {
@@ -10,6 +11,10 @@ const props = defineProps({
 	rules: {
 		type: Array,
 		default: () => [],
+	},
+	mask: {
+		type: Object,
+		default: () => {},
 	},
 });
 
@@ -36,6 +41,8 @@ function validate() {
 }
 
 watch(model, validate);
+
+const { el } = useIMask(props.mask);
 </script>
 
 <template>
@@ -48,6 +55,8 @@ watch(model, validate);
 			:id="internalId"
 			v-bind="$attrs"
 			v-model="model"
+			:mask="mask"
+			ref="el"
 		/>
 		<span class="text-field__error-message">{{ errorMessage }}</span>
 	</div>

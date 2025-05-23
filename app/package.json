@@ -13,6 +13,7 @@
     "@brazilian-utils/brazilian-utils": "^1.0.0-rc.12",
     "dayjs": "^1.11.13",
     "vue": "^3.2.13",
+    "vue-imask": "^7.6.1",
     "vuex": "^4.0.0"
   },
   "devDependencies": {

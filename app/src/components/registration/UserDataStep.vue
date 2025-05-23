@@ -3,14 +3,21 @@ import { computed } from "vue";
 import { useStore } from "vuex";
 import VTextField from "../VTextField.vue";
 import { required, cpf, cnpj, phone, date } from "@/utils/validators";
+import { cpfMask, cnpjMask, dateMask, phoneMask } from "@/utils/masks";
 
 const store = useStore();
 const dataForm = store.state.registrationForm;
 
+const isPF = computed(() => dataForm.type === "PF");
 const title = computed(() =>
-	dataForm.type === "PF" ? "Pessoa Física" : "Pessoa Jurídica"
+	isPF.value ? "Pessoa Física" : "Pessoa Jurídica"
+);
+
+const labelDate = computed(() =>
+	isPF.value ? "Data de nascimento" : "Data da abertura"
 );
 </script>
+
 <template>
 	<h2>{{ title }}</h2>
 
@@ -29,13 +36,7 @@ const title = computed(() =>
 			placeholder="xxx.xxx.xxx-xx"
 			v-model="dataForm.document"
 			:rules="[required, cpf]"
-			required
-		/>
-		<v-text-field
-			type="date"
-			label="Data de nascimento"
-			v-model="dataForm.date"
-			:rules="[required, date]"
+			:mask="cpfMask"
 			required
 		/>
 	</template>
@@ -47,7 +48,6 @@ const title = computed(() =>
 			v-model="dataForm.name"
 			placeholder="Digite a razão social..."
 			:rules="[required]"
-			autofocus
 			required
 		/>
 		<v-text-field
@@ -56,16 +56,20 @@ const title = computed(() =>
 			placeholder="xx.xxx.xxx/xxxx-xx"
 			v-model="dataForm.document"
 			:rules="[required, cnpj]"
-			required
-		/>
-		<v-text-field
-			type="date"
-			label="Data de abertura"
-			:rules="[required, date]"
-			v-model="dataForm.date"
+			:mask="cnpjMask"
 			required
 		/>
 	</template>
+
+	<v-text-field
+		type="text"
+		:label="labelDate"
+		v-model="dataForm.date"
+		:rules="[required, date]"
+		:mask="dateMask"
+		placeholder="xx/xx/xxxx"
+		required
+	/>
 
 	<v-text-field
 		type="tel"
@@ -73,6 +77,7 @@ const title = computed(() =>
 		placeholder="(xx) xxxxxx-xxxx"
 		v-model="dataForm.phone"
 		:rules="[required, phone]"
+		:mask="phoneMask"
 		required
 	/>
 </template>

@@ -35,5 +35,6 @@ export function date(value) {
 }
 
 export function minLength(length) {
-	return (value) => value.length >= length || `Quantidade mínima: ${length}`;
+	return (value) =>
+		value.length >= length || `Deve conter no mínimo ${length} digitos.`;
 }
