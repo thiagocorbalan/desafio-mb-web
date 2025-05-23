@@ -23,61 +23,64 @@ const labelDate = computed(() =>
 
 	<template v-if="dataForm.type === 'PF'">
 		<v-text-field
-			type="text"
-			label="Nome"
-			v-model="dataForm.name"
-			placeholder="Digite seu nome..."
 			:rules="[required]"
+			label="Nome"
+			placeholder="Digite seu nome..."
 			required
+			type="text"
+			v-model="dataForm.name"
 		/>
 		<v-text-field
-			type="tel"
-			label="CPF"
-			placeholder="xxx.xxx.xxx-xx"
-			v-model="dataForm.document"
-			:rules="[required, cpf]"
 			:mask="cpfMask"
+			:rules="[required, cpf]"
+			label="CPF"
+			maxlength="14"
+			placeholder="xxx.xxx.xxx-xx"
 			required
+			type="tel"
+			v-model="dataForm.document"
 		/>
 	</template>
 
 	<template v-else>
 		<v-text-field
-			type="text"
-			label="Razão Social"
-			v-model="dataForm.name"
-			placeholder="Digite a razão social..."
 			:rules="[required]"
+			label="Razão Social"
+			placeholder="Digite a razão social..."
 			required
+			type="text"
+			v-model="dataForm.name"
 		/>
 		<v-text-field
-			type="tel"
-			label="CNPJ"
-			placeholder="xx.xxx.xxx/xxxx-xx"
-			v-model="dataForm.document"
-			:rules="[required, cnpj]"
 			:mask="cnpjMask"
+			:rules="[required, cnpj]"
+			label="CNPJ"
+			maxlength="18"
+			placeholder="xx.xxx.xxx/xxxx-xx"
 			required
+			type="tel"
+			v-model="dataForm.document"
 		/>
 	</template>
 
 	<v-text-field
-		type="text"
 		:label="labelDate"
-		v-model="dataForm.date"
-		:rules="[required, date]"
 		:mask="dateMask"
+		:rules="[required, date]"
+		maxlength="10"
 		placeholder="xx/xx/xxxx"
 		required
+		type="text"
+		v-model="dataForm.date"
 	/>
 
 	<v-text-field
-		type="tel"
+		:mask="phoneMask"
+		:rules="[required, phone]"
 		label="Telefone"
 		placeholder="(xx) xxxxxx-xxxx"
-		v-model="dataForm.phone"
-		:rules="[required, phone]"
-		:mask="phoneMask"
 		required
+		type="tel"
+		v-model="dataForm.phone"
 	/>
 </template>

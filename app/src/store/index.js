@@ -21,6 +21,7 @@ export default createStore({
 		resetRegistrationUserData(state) {
 			state.registrationForm.name = "";
 			state.registrationForm.document = "";
+			state.registrationForm.date = "";
 		},
 	},
 	actions: {},

@@ -3,7 +3,7 @@ export const phoneMask = {
 };
 
 export const dateMask = {
-	mask: "00/00/0000",
+	mask: "00/00/00000",
 };
 
 export const cpfMask = {
