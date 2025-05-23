@@ -2,13 +2,10 @@
 import { useStore } from "vuex";
 import VRadio from "../VRadio.vue";
 import VTextField from "../VTextField.vue";
+import { required, email } from "@/utils/validators";
 
 const store = useStore();
 const dataForm = store.state.registrationForm;
-
-function required(value) {
-	return !!value || "Campo obrigatório";
-}
 </script>
 
 <template>
@@ -20,7 +17,7 @@ function required(value) {
 		placeholder="Digite seu email..."
 		v-model="dataForm.email"
 		required
-		:rules="[required]"
+		:rules="[required, email]"
 	/>
 
 	<div class="register-type">

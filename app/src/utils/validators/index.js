@@ -28,8 +28,12 @@ export function phone(value) {
 
 export function date(value) {
 	return (
-		(dayjs(value, "YYYY-MM-DD").isValid() &&
+		(dayjs(value, "YYYY-DD-MM").isValid() &&
 			dayjs(value).isBefore(dayjs())) ||
 		"Data inválida"
 	);
+}
+
+export function minLength(length) {
+	return (value) => value.length >= length || `Quantidade mínima: ${length}`;
 }

@@ -22,7 +22,6 @@ const internalId = computed(() => {
 const errorMessage = ref(null);
 
 function validate() {
-	console.log("asdasd", props.label);
 	const isValid = props.rules.reduce((result, rule) => {
 		if (typeof result === "string") return result;
 		return rule(model.value);

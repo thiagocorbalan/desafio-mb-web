@@ -1,4 +1,4 @@
-import { cnpj, cpf, date, email, phone, required } from "./";
+import { cnpj, cpf, date, email, minLength, phone, required } from "./";
 
 describe("validators utils", () => {
 	describe("required", () => {
@@ -55,7 +55,7 @@ describe("validators utils", () => {
 			expect(phone("148888-8888")).toBe("Telfone inválido");
 		});
 
-		it("should return message when value is valid", () => {
+		it("should return true when value is valid", () => {
 			expect(phone("14988888888")).toBe(true);
 			expect(phone("1428888888")).toBe(true);
 			expect(phone("1438888888")).toBe(true);
@@ -73,8 +73,23 @@ describe("validators utils", () => {
 			expect(date("2025-05-23")).toBe("Data inválida");
 		});
 
-		it("should return message when value is invalid", () => {
+		it("should return true when value is invalid", () => {
 			expect(date("2025-05-20")).toBe(true);
+		});
+	});
+
+	describe("minLength", () => {
+		it("should return message when value is invalid", () => {
+			const resultA = minLength(8);
+			expect(resultA("1234567")).toBe("Quantidade mínima: 8");
+
+			const resultB = minLength(4);
+			expect(resultB("123")).toBe("Quantidade mínima: 4");
+		});
+
+		it("should return true when value is valid", () => {
+			const resultA = minLength(8);
+			expect(resultA("12345678")).toBe(true);
 		});
 	});
 });
