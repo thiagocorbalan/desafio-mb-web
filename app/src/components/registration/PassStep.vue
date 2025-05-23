@@ -15,5 +15,6 @@ const dataForm = store.state.registrationForm;
 		label="Sua senha"
 		v-model="dataForm.password"
 		:rules="[required, minLength(8)]"
+		v-autofocus
 	/>
 </template>
