@@ -9,8 +9,15 @@ $colors: (
 	neutral-600: #525252,
 	neutral-900: #171717,
 	neutral-black: #000,
+	success: #349334,
+	success-light: #daefda,
+	success-dark: #183e18,
 	error: #c00,
 	error-light: #ffecec,
+	error-dark: #680d0d,
+	info: #4FC3F7,
+	info-light: #E1F5FE,
+	info-dark: #01579B,
 );
 
 @function color($name) {
