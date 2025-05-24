@@ -103,6 +103,10 @@ const submitForm = () => {
 	}
 }
 
+.form {
+	position: relative;
+}
+
 .actions {
 	display: flex;
 	justify-content: space-between;

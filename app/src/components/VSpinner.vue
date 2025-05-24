@@ -5,13 +5,13 @@
 <style lang="scss" scoped>
 @import "./../assets/scss/global.scss";
 .spinner {
-	width: 1rem;
-	height: 1rem;
+	width: 0.625rem;
+	height: 0.625rem;
 	border-radius: 50%;
-	border: 4px solid;
+	border: 0.1875rem solid;
 	border-color: color(neutral-300);
 	border-right-color: color(neutral-600);
-	animation: spinner 1s infinite linear;
+	animation: spinner 0.5s infinite linear;
 }
 
 @keyframes spinner {

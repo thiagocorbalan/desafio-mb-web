@@ -16,6 +16,7 @@ watch(
 
 <template>
 	<h2>Seja bem vindo(a)</h2>
+
 	<v-text-field
 		label="Endereço de e-mail"
 		type="email"
