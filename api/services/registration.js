@@ -2,7 +2,7 @@ import { isValidCNPJ, isValidCPF, isValidEmail } from "@brazilian-utils/brazilia
 import dayjs from 'dayjs';
 import existEmptyFields from './../utils/checkEmptyFields/index.js';
 
-const sendError = (message) ({ error: true, message });
+const sendError = (message) => ({ error: true, message });
 
 const register = (body)=> {
 	if (existEmptyFields(body)) return sendError('body contain empty fields');
@@ -13,7 +13,7 @@ const register = (body)=> {
 	if (!dayjs(body.date).isValid()) return sendError('Date is not valid');
 	if (body.password.length < 8) return sendError('Password is not valid');
 
-	return { success: true };
+	return;
 }
 
 export default {
