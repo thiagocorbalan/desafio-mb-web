@@ -1,6 +1,6 @@
 <script setup>
 import uuid from "@/utils/generateShortUUID";
-import { computed, defineProps, defineModel } from "vue";
+import { defineProps, defineModel } from "vue";
 
 const props = defineProps({
 	label: {
@@ -11,9 +11,7 @@ const props = defineProps({
 
 const model = defineModel();
 
-const internalId = computed(() => {
-	return `radio-${uuid()}`;
-});
+const internalId = `radio-${uuid()}`;
 </script>
 
 <template>
