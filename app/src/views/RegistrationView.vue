@@ -6,7 +6,7 @@ import PassStep from "@/components/registration/PassStep.vue";
 import ReviewStep from "@/components/registration/ReviewStep.vue";
 import UserDataStep from "@/components/registration/UserDataStep.vue";
 import { useRegistrationApi } from "@/composable/useRegistrationApi";
-import { computed, ref } from "vue";
+import { computed, ref, watch } from "vue";
 import { useStore } from "vuex";
 
 const { register, loading, error, success } = useRegistrationApi();
@@ -15,6 +15,7 @@ const store = useStore();
 
 const step = ref(0);
 const steps = [FirstStep, UserDataStep, PassStep, ReviewStep];
+const registerCompleted = ref(false);
 
 const currentStep = computed(() => step.value + 1);
 const isLastStep = computed(() => step.value === steps.length - 1);
@@ -33,6 +34,15 @@ const submitForm = () => {
 		nextStep();
 	}
 };
+
+const restart = () => {
+	store.commit("resetRegistrationForm");
+	success.value = null;
+	registerCompleted.value = false;
+	step.value = 0;
+};
+
+watch(success, (res) => (registerCompleted.value = !!res));
 </script>
 
 <template>
@@ -59,16 +69,27 @@ const submitForm = () => {
 			<component :is="steps[step]" />
 
 			<div class="actions">
-				<v-button :loading="loading">{{ textButton }}</v-button>
 				<v-button
-					v-if="step > 0"
+					v-if="registerCompleted"
 					type="button"
-					color="ghost"
-					@click="previousStep"
-					:disabled="loading"
+					@click="restart"
 				>
-					Voltar
+					Reiniciar
 				</v-button>
+				<template v-else>
+					<v-button :loading="loading" :disabled="loading">
+						{{ textButton }}
+					</v-button>
+					<v-button
+						v-if="step > 0"
+						type="button"
+						color="ghost"
+						@click="previousStep"
+						:disabled="loading"
+					>
+						Voltar
+					</v-button>
+				</template>
 			</div>
 		</form>
 	</div>
