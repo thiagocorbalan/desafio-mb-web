@@ -1,8 +1,8 @@
-import { shallowMount } from "@vue/test-utils";
 import VAlert from "@/components/VAlert.vue";
+import { shallowMount } from "@vue/test-utils";
 
 describe("VAlert.vue", () => {
-	it("renders slot when passed message in slot", () => {
+	it("should renders component with slot filled", () => {
 		const wrapper = shallowMount(VAlert, {
 			slots: {
 				default: "Cadastro com sucesso",
