@@ -1,16 +1,35 @@
-const API_URL = "http://localhost:3000";
+const BASE_API_URL = "http://localhost:3000";
 
-export const post = async (url, data, customOptions = {}) => {
-	const options = {
-		method: "POST",
-		headers: { "Content-Type": "application/json" },
-		body: JSON.stringify(data),
-	};
+const fetcher = async (url, options) => {
+	try {
+		const finalURL = BASE_API_URL + url;
+		const response = await fetch(finalURL, options);
 
-	const finalOptions = Object.assign(options, customOptions);
+		if (!response.ok) return { ok: false, status: response.status };
 
-	return fetch(`${API_URL}${url}`, finalOptions).then((res) => {
-		if (!res.ok) throw new Error(res.text());
-		return res.json();
-	});
+		const contentType = response.headers.get("content-type");
+		const isJson = contentType?.includes("application/json");
+		const data = isJson ? await response.json() : await response.text();
+
+		return { ok: true, status: response.status, data };
+	} catch (error) {
+		return {
+			ok: false,
+			status: 0,
+			error: error.message || "Erro desconhecido",
+		};
+	}
+};
+
+export const post = (url, data, customOptions = {}) => {
+	const options = Object.assign(
+		{
+			method: "POST",
+			headers: { "Content-Type": "application/json" },
+			body: JSON.stringify(data),
+		},
+		customOptions
+	);
+
+	return fetcher(url, options);
 };
