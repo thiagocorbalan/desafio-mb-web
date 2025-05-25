@@ -31,12 +31,14 @@ const handleClose = () => {
 			src="@/assets/ic-check-circle.svg"
 			width="24"
 			heigth="24"
+			class="alert__icon--success"
 		/>
 		<img
 			v-if="props.error"
 			src="@/assets/ic-close-circle.svg"
 			width="24"
 			heigth="24"
+			class="alert__icon--error"
 		/>
 		<div class="alert__text">
 			<slot />
