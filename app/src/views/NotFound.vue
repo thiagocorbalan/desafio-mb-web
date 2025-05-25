@@ -1,3 +1,10 @@
+<script setup>
+import { onMounted } from "vue";
+onMounted(() => {
+	document.title = "Mercado Bitcoin - Página não encontrada";
+});
+</script>
+
 <template>
 	<div class="content">
 		<img src="@/assets/404.svg" alt="404" width="460" height="460" />

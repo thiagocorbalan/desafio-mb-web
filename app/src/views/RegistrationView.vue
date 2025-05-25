@@ -6,7 +6,7 @@ import PassStep from "@/components/registration/PassStep.vue";
 import ReviewStep from "@/components/registration/ReviewStep.vue";
 import UserDataStep from "@/components/registration/UserDataStep.vue";
 import { useRegistrationApi } from "@/composable/useRegistrationApi";
-import { computed, ref, watch } from "vue";
+import { computed, ref, watch, onMounted } from "vue";
 import { useStore } from "vuex";
 
 const { register, loading, error, success } = useRegistrationApi();
@@ -43,6 +43,10 @@ const restart = () => {
 };
 
 watch(success, (res) => (registerCompleted.value = !!res));
+
+onMounted(() => {
+	document.title = "Mercado Bitcoin - Cadastro";
+});
 </script>
 
 <template>
