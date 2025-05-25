@@ -1,5 +1,4 @@
 <script setup>
-import { computed } from "vue";
 import { useStore } from "vuex";
 import VTextField from "../VTextField.vue";
 import { required, cpf, cnpj, phone, date } from "@/utils/validators";
@@ -8,14 +7,9 @@ import { cpfMask, cnpjMask, dateMask, phoneMask } from "@/utils/masks";
 const store = useStore();
 const dataForm = store.state.registrationForm;
 
-const isPF = computed(() => dataForm.type === "PF");
-const title = computed(() =>
-	isPF.value ? "Pessoa Física" : "Pessoa Jurídica"
-);
-
-const labelDate = computed(() =>
-	isPF.value ? "Data de nascimento" : "Data da abertura"
-);
+const isPF = dataForm.type === "PF";
+const title = isPF.value ? "Pessoa Física" : "Pessoa Jurídica";
+const labelDate = isPF.value ? "Data de nascimento" : "Data da abertura";
 </script>
 
 <template>
