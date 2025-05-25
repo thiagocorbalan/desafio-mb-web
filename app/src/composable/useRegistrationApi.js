@@ -3,10 +3,10 @@ import { post } from "@/utils/httpRequest";
 import httpStatusCode from "@/utils/httpStatusCode";
 
 const MESSAGES = {
-	SUCCESS: "Cadastro enviado com sucess",
-	CLIENT_ERROR: "Ocorreu algum erro no cadastro. Tente novamente",
-	SERVER_ERROR: "Ocorreu algum erro. Tente novamente mais tarde",
-	UNKNOWN: "Ocorreu algum erro desconhecido. Tente novamente mais tarde",
+	SUCCESS: "Cadastro enviado com sucesso!",
+	CLIENT_ERROR: "Ocorreu algum erro no cadastro. Tente novamente.",
+	SERVER_ERROR: "Ocorreu algum erro. Tente novamente mais tarde.",
+	UNKNOWN: "Ocorreu algum erro desconhecido. Tente novamente mais tarde.",
 };
 
 export const useRegistrationApi = () => {
@@ -23,7 +23,6 @@ export const useRegistrationApi = () => {
 			() => (loading.value = false)
 		);
 
-		debugger;
 		if (ok) return (success.value = MESSAGES.SUCCESS);
 
 		if (

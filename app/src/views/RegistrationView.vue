@@ -1,14 +1,15 @@
 <script setup>
+import VAlert from "@/components/VAlert.vue";
 import VButton from "@/components/VButton.vue";
 import FirstStep from "@/components/registration/FirstStep.vue";
 import PassStep from "@/components/registration/PassStep.vue";
 import ReviewStep from "@/components/registration/ReviewStep.vue";
 import UserDataStep from "@/components/registration/UserDataStep.vue";
-import { computed, ref } from "vue";
 import { useRegistrationApi } from "@/composable/useRegistrationApi";
+import { computed, ref } from "vue";
 import { useStore } from "vuex";
 
-const { postData, loading, error } = useRegistrationApi();
+const { register, loading, error, success } = useRegistrationApi();
 
 const store = useStore();
 
@@ -27,7 +28,7 @@ const nextStep = () => step.value++;
 
 const submitForm = () => {
 	if (isLastStep.value) {
-		postData("/registration", store.state.registrationForm);
+		register("/registration", store.state.registrationForm);
 	} else {
 		nextStep();
 	}
@@ -47,8 +48,14 @@ const submitForm = () => {
 		<div class="step" aria-live="polite">
 			Etapa <strong>{{ currentStep }}</strong> de 4
 		</div>
+		<form @submit.prevent="submitForm" class="form">
+			<v-alert v-if="success" success @close="() => (success = null)">
+				{{ success }}
+			</v-alert>
+			<v-alert v-if="error" error @close="() => (error = null)">
+				{{ error }}
+			</v-alert>
 
-		<form @submit.prevent="submitForm">
 			<component :is="steps[step]" />
 
 			<div class="actions">
@@ -58,11 +65,11 @@ const submitForm = () => {
 					type="button"
 					color="ghost"
 					@click="previousStep"
+					:disabled="loading"
 				>
 					Voltar
 				</v-button>
 			</div>
-			{{ error }}
 		</form>
 	</div>
 </template>

@@ -23,6 +23,15 @@ export default createStore({
 			state.registrationForm.document = "";
 			state.registrationForm.date = "";
 		},
+		resetRegistrationForm(state) {
+			state.registrationForm.email = "";
+			state.registrationForm.type = "PF";
+			state.registrationForm.name = "";
+			state.registrationForm.document = "";
+			state.registrationForm.date = "";
+			state.registrationForm.phone = "";
+			state.registrationForm.password = "";
+		},
 	},
 	actions: {},
 	modules: {},

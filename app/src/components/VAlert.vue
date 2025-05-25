@@ -92,6 +92,7 @@ const handleClose = () => {
 
 	&__text {
 		flex: 1;
+		line-height: normal;
 	}
 }
 </style>
