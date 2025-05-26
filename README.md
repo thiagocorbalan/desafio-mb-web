@@ -1,10 +1,8 @@
-# desafio-mb-web
-
 Obrigado pela oportunidade de desenvolver esse projeto foi muito divertido. Além de ter cumprido os requisitos do desafio, acabei incluindo algumas coisas a mais no qual não estavam listadas e mas acredito que seja importante, como por exemplo a a11y, exibição de sucesso ou erro em um componente alert e reinício do preenchimento do formulário e alguns toques de design para enriquecer ainda mais o desafio.
 
 ![Print do desafio](print.png)
 
-## Requisitos técnicos do desafio
+## Requisitos técnicos do desafio do MB
 - [x] VueJS 3 (via composition API com `<script setup>` + Vite) / Javascript Vanilla (não utilize Typescript)
 - [x] Não é necessário utilizar Vue Router ou frameworks do tipo
 - [x] Não utilize frameworks de Store/Gerenciamento de estado, dê preferência a recursos nativos da framework Vue ou do Javascript Vanilla
@@ -15,7 +13,7 @@ Obrigado pela oportunidade de desenvolver esse projeto foi muito divertido. Alé
 - [x] NodeJS com Express para servir o conteúdo e as APIs (com modo "mockup") descritos abaixo na sessão Requisitos técnicos para o servidor NodeJS
 - [x] Utilize npm para gerenciamento e instalação de dependências e scripts necessários
 
-### O que fiz além
+### O que fiz a mais
 - [x] Página 404
 - [x] Fluxo completo do cadastro com validação padrão do HTML
 - [x] Implementação de algumas técnicas de a11y
@@ -23,7 +21,7 @@ Obrigado pela oportunidade de desenvolver esse projeto foi muito divertido. Alé
 - [x] Execução do projeto via Docker, Docker-compose e Makefile
 - [x] Uma pequena melhora no layout sugerido no desafio.
 
-## Subindo o projeto :rocket
+## Subindo o projeto 🚀
 
 1. Via terminal
 	```bash
@@ -44,7 +42,7 @@ Obrigado pela oportunidade de desenvolver esse projeto foi muito divertido. Alé
 	make start
 	```
 
-## Rodando os testes
+## Rodando os testes 🧪
 Ambos os projetos foram desenvolvidos testes.
 
 ### API
@@ -60,10 +58,10 @@ npm run test:unit # Para testes de unidade (componentes e utils)
 ```bash
 npm run test:e2e # Para os testes de e2e do fluxo completo
 ```
+---
+### Para visualizar o projeto acesse: http://localhost:8080/registration
 
-Para testar acesso http://localhost:8080/registration
-
-## Obrigado =)
+## Obrigado 🙏
 
 
 
