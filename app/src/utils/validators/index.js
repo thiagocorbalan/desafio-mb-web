@@ -14,7 +14,7 @@ export const cpf = (value) => isValidCPF(value) || "CPF inválido";
 
 export const cnpj = (value) => isValidCNPJ(value) || "CNPJ inválido";
 
-export const phone = (value) => isValidPhone(value) || "Telfone inválido";
+export const phone = (value) => isValidPhone(value) || "Telefone inválido";
 
 export const date = (value) =>
 	(dayjs(value, "YYYY-DD-MM").isValid() && dayjs(value).isBefore(dayjs())) ||

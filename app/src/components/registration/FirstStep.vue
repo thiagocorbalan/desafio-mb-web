@@ -20,6 +20,7 @@ watch(
 	<v-text-field
 		label="Endereço de e-mail"
 		type="email"
+		name="email"
 		placeholder="Digite seu email..."
 		v-model="dataForm.email"
 		required

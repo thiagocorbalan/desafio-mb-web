@@ -16,5 +16,6 @@ const dataForm = store.state.registrationForm;
 		v-model="dataForm.password"
 		:rules="[required, minLength(8)]"
 		v-autofocus
+		name="password"
 	/>
 </template>

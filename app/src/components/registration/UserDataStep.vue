@@ -8,8 +8,8 @@ const store = useStore();
 const dataForm = store.state.registrationForm;
 
 const isPF = dataForm.type === "PF";
-const title = isPF.value ? "Pessoa Física" : "Pessoa Jurídica";
-const labelDate = isPF.value ? "Data de nascimento" : "Data da abertura";
+const title = isPF ? "Pessoa Física" : "Pessoa Jurídica";
+const labelDate = isPF ? "Data de nascimento" : "Data da abertura";
 </script>
 
 <template>
@@ -19,6 +19,7 @@ const labelDate = isPF.value ? "Data de nascimento" : "Data da abertura";
 		<v-text-field
 			:rules="[required]"
 			label="Nome"
+			name="name"
 			placeholder="Digite seu nome..."
 			required
 			type="text"
@@ -29,6 +30,7 @@ const labelDate = isPF.value ? "Data de nascimento" : "Data da abertura";
 			:mask="cpfMask"
 			:rules="[required, cpf]"
 			label="CPF"
+			name="document"
 			maxlength="14"
 			placeholder="xxx.xxx.xxx-xx"
 			required
@@ -41,6 +43,7 @@ const labelDate = isPF.value ? "Data de nascimento" : "Data da abertura";
 		<v-text-field
 			:rules="[required]"
 			label="Razão Social"
+			name="name"
 			placeholder="Digite a razão social..."
 			required
 			type="text"
@@ -50,6 +53,7 @@ const labelDate = isPF.value ? "Data de nascimento" : "Data da abertura";
 			:mask="cnpjMask"
 			:rules="[required, cnpj]"
 			label="CNPJ"
+			name="document"
 			maxlength="18"
 			placeholder="xx.xxx.xxx/xxxx-xx"
 			required
@@ -63,6 +67,7 @@ const labelDate = isPF.value ? "Data de nascimento" : "Data da abertura";
 		:mask="dateMask"
 		:rules="[required, date]"
 		maxlength="10"
+		name="date"
 		placeholder="xx/xx/xxxx"
 		required
 		type="text"
@@ -73,6 +78,7 @@ const labelDate = isPF.value ? "Data de nascimento" : "Data da abertura";
 		:mask="phoneMask"
 		:rules="[required, phone]"
 		label="Telefone"
+		name="phone"
 		placeholder="(xx) xxxxxx-xxxx"
 		required
 		type="tel"

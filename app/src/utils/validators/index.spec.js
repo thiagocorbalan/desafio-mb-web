@@ -51,8 +51,8 @@ describe("validators utils", () => {
 
 	describe("phone", () => {
 		it("should return message when value is invalid", () => {
-			expect(phone("149888888887")).toBe("Telfone inválido");
-			expect(phone("148888-8888")).toBe("Telfone inválido");
+			expect(phone("149888888887")).toBe("Telefone inválido");
+			expect(phone("148888-8888")).toBe("Telefone inválido");
 		});
 
 		it("should return true when value is valid", () => {

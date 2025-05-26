@@ -27,7 +27,7 @@ export const useRegistrationApi = () => {
 
 		if (
 			status >= httpStatusCode.BadRequest &&
-			status <= httpStatusCode.InternalServerError
+			status < httpStatusCode.InternalServerError
 		) {
 			return (error.value = MESSAGES.CLIENT_ERROR);
 		}
