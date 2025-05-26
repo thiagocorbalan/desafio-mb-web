@@ -1,0 +1,20 @@
+services:
+    app:
+        build:
+            context: "app/."
+        image: mb/app
+        container_name: mb_app
+        ports:
+        - "8080:8080"
+    api:
+        build:
+            context: "api/."
+        image: mb/api
+        container_name: mb_api
+        ports:
+        - "3000:3000"
+
+networks:
+    default:
+        name: mb
+        external: true

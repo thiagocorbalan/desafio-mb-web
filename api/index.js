@@ -3,7 +3,6 @@ import express from 'express';
 import registrationService from './services/registration.js';
 import httpStausCode from './utils/httpStausCode.js';
 
-
 const app = express();
 const port = 3000;
 
