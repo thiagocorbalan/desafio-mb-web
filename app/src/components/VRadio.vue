@@ -1,12 +1,16 @@
 <script setup>
 import uuid from "@/utils/generateShortUUID";
-import { defineProps, defineModel } from "vue";
+import { defineProps, defineModel, defineOptions } from "vue";
 
 const props = defineProps({
 	label: {
 		type: String,
 		default: "Label",
 	},
+});
+
+defineOptions({
+	inheritAttrs: false,
 });
 
 const model = defineModel();

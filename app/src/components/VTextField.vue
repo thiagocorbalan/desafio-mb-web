@@ -1,6 +1,14 @@
 <script setup>
 import uuid from "@/utils/generateShortUUID";
-import { computed, defineProps, ref, defineModel, watch, onMounted } from "vue";
+import {
+	computed,
+	defineProps,
+	ref,
+	defineModel,
+	watch,
+	onMounted,
+	defineOptions,
+} from "vue";
 import { useIMask } from "vue-imask";
 
 const props = defineProps({
@@ -16,6 +24,10 @@ const props = defineProps({
 		type: Object,
 		default: () => {},
 	},
+});
+
+defineOptions({
+	inheritAttrs: false,
 });
 
 const model = defineModel();

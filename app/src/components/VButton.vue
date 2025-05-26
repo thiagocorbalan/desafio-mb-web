@@ -1,5 +1,5 @@
 <script setup>
-import { defineProps } from "vue";
+import { defineProps, defineOptions } from "vue";
 import VSpinner from "./VSpinner.vue";
 
 const props = defineProps({
@@ -15,6 +15,10 @@ const props = defineProps({
 		type: Boolean,
 		default: false,
 	},
+});
+
+defineOptions({
+	inheritAttrs: false,
 });
 
 const cssClassMap = {
