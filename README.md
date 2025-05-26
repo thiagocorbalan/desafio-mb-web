@@ -58,6 +58,7 @@ npm run test:unit # Para testes de unidade (componentes e utils)
 ```bash
 npm run test:e2e # Para os testes de e2e do fluxo completo
 ```
+> Obs. Após rodar o comando do teste e2e acima, vai abrir uma janela listando os arquivos, clicar no link **"Run 2 integration specs"** para executar todos os testes e2e.
 ---
 ### Para visualizar o projeto acesse: http://localhost:8080/registration
 
