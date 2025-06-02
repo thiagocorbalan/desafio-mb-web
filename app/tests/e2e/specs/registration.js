@@ -319,5 +319,46 @@ describe("Registration", () => {
 			cy.get(".actions").find("button.btn--primary").click();
 			cy.get(".step").should("include.text", "Etapa 1 de 4");
 		});
+
+		it("should can be edit data", () => {
+			cy.intercept("POST", "/registration", {
+				statusCode: 200,
+			}).as("postRegistration");
+
+			cy.visit("/registration");
+			cy.get("input[name='email']").type("email@gmail.com");
+			cy.get(".actions").find("button.btn--primary").focus().click();
+
+			cy.get("input[name='name']").type("Nocab Almeida");
+			cy.get("input[name='document']").type("59163759055");
+			cy.get("input[name='date']").type("10051988");
+			cy.get("input[name='phone']").type("11988888888");
+
+			cy.get(".actions").find("button.btn--primary").focus().click();
+
+			cy.get("input[name='password']").type("12345678");
+
+			cy.get(".actions").find("button.btn--primary").focus().click();
+			cy.get(".step").should("include.text", "Etapa 4 de 4");
+			cy.contains("h2", "Revise suas informações");
+
+			cy.get("input[name='name']").clear().type("Another User Name");
+
+			cy.get(".actions").find("button.btn--primary").focus().click();
+
+			cy.wait(["@postRegistration"]).then((interception) => {
+				expect(interception.request.body).to.deep.eq({
+					name: "Another User Name",
+					type: "PF",
+					email: "email@gmail.com",
+					document: "591.637.590-55",
+					date: "10/05/1988",
+					phone: "(11) 98888-8888",
+					password: "12345678",
+				});
+			});
+
+			cy.get(".alert").should("have.class", "alert--success");
+		});
 	});
 });
